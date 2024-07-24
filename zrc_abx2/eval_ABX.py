@@ -267,7 +267,7 @@ class EvalABX:
                 )
 
                 n_data = group_confusion._values().size(0)
-                index_ = torch.sparse.sparse_coo_tensor(
+                index_ = torch.sparse_coo_tensor(
                     group_confusion._indices(),
                     torch.ones((n_data), dtype=torch.float),
                     group_confusion.size(),
@@ -313,7 +313,7 @@ class EvalABX:
                     ABXIterator, distance_function, ABXIterator.symmetric, pooling, show_progress
                 )
                 n_data = group_confusion._values().size(0)
-                index_ = torch.sparse.sparse_coo_tensor(
+                index_ = torch.sparse_coo_tensor(
                     group_confusion._indices(),
                     torch.ones((n_data), dtype=torch.float),
                     group_confusion.size(),
