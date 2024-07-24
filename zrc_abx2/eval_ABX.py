@@ -267,10 +267,11 @@ class EvalABX:
                 )
 
                 n_data = group_confusion._values().size(0)
-                index_ = torch.sparse.LongTensor(
+                index_ = torch.sparse.sparse_coo_tensor(
                     group_confusion._indices(),
                     torch.ones((n_data), dtype=torch.float),
                     group_confusion.size(),
+                    dtype=torch.long,
                 )
                 if contextmode == "any":
                     divisor_context = index_.to_dense()
@@ -312,10 +313,11 @@ class EvalABX:
                     ABXIterator, distance_function, ABXIterator.symmetric, pooling, show_progress
                 )
                 n_data = group_confusion._values().size(0)
-                index_ = torch.sparse.LongTensor(
+                index_ = torch.sparse.sparse_coo_tensor(
                     group_confusion._indices(),
                     torch.ones((n_data), dtype=torch.float),
                     group_confusion.size(),
+                    dtype=torch.long,
                 )
                 divisor_context = torch.sparse.sum(index_, dimnacross).to_dense()
                 if not dimnacross:

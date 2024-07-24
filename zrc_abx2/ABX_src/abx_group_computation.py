@@ -166,6 +166,7 @@ def get_abx_scores_dtw_on_group(group_iterator: Union[ABXWithinGroupIterator, AB
             data_list.append(abx)
             coords_list.append(coords)
 
-    return torch.sparse.FloatTensor(torch.LongTensor(coords_list).t(),
-                                    torch.FloatTensor(data_list),
-                                    group_iterator.get_board_size())
+    return torch.sparse_coo_tensor(torch.LongTensor(coords_list).t(),
+                                   torch.FloatTensor(data_list),
+                                   group_iterator.get_board_size(),
+                                   dtype=torch.float)
